@@ -63,8 +63,17 @@ def analyze_data(df, describe_df):
 	return describe_df
 
 		
+def display (df, describe_df):
+	# display lines as columns and columns as lines and display no numerical value if colomn of df is not in describe_df
+	not_numeric_columns = []
+	for column_name in df.columns:
+		if column_name not in describe_df.columns:
+			not_numeric_columns.append(column_name)
+	describe_df = describe_df.T
+	print(describe_df)
+	print("\n")
+	print("Not numeric columns : ", not_numeric_columns)
 
-			
     
 def main():
 	if len(sys.argv) > 1:
@@ -74,7 +83,7 @@ def main():
 		sys.exit(1)
 	describe_df = create_describe_df(df)
 	describe_df = analyze_data(df, describe_df)
-	print(describe_df)
+	display(df, describe_df)
     
 if __name__ == "__main__":
     main()
