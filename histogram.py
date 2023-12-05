@@ -31,15 +31,13 @@ def read_csv(path):
 
 def display_histogram(path):
 	df = read_csv(path)
-	fig, axs = plt.subplots(3, 5, figsize=(15, 15))
-	index = 0
-	for course in courses:
+	fig, axs = plt.subplots(3, 5, figsize=(15, 8))
+	for i, course in enumerate(courses):
 		# Turn grid into array of length [number of features]
 		axs = axs.flatten()[:len(courses)]
 		for house in houses:
-			axs[index].hist(df[df["Hogwarts House"] == house][course], alpha=0.5, label=house)
-		axs[index].set_title(course)
-		index += 1
+			axs[i].hist(df[df["Hogwarts House"] == house][course], alpha=0.5, label=house)
+		axs[i].set_title(course)
             
     # Set house legend in bottom right corner
 	handles, labels = axs[0].get_legend_handles_labels()
