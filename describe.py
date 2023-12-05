@@ -67,7 +67,11 @@ def analyze_data(df, describe_df):
 			
     
 def main():
-	df = read_csv(sys.argv[1])
+	if len(sys.argv) > 1:
+		df = read_csv(sys.argv[1])
+	else:
+		print("Usage: python describe.py <path_to_dataset>")
+		sys.exit(1)
 	describe_df = create_describe_df(df)
 	describe_df = analyze_data(df, describe_df)
 	print(describe_df)
