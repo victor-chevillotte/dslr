@@ -1,4 +1,3 @@
-import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -40,21 +39,24 @@ def display_histogram(path):
 		for house in houses:
 			axs[index].hist(df[df["Hogwarts House"] == house][course], alpha=0.5, label=house)
 		axs[index].set_title(course)
-		axs[index].legend(loc='upper right')
-		axs[index].set_title(course)
 		index += 1
+            
+    # Set house legend in bottom right corner
+	handles, labels = axs[0].get_legend_handles_labels()
+	plt.legend(handles, labels, loc='center')
 	fig.suptitle("Distribution of scores for each course between all four houses")
 	fig.tight_layout()
 	fig.subplots_adjust(top=0.93, hspace=0.2, wspace=0.15)#margin between subplots
     
 	plt.show()
-	print("Which Hogwarts course has a homogeneous score distribution between all four houses?") 
-	print("Care of magical creatures has a homogeneous score distribution between all four houses") 
-	
+
 
 
 def main():
-    display_histogram("data/dataset_train.csv")
+	display_histogram("data/dataset_train.csv")
+	print("Which Hogwarts course has a homogeneous score distribution between all four houses?") 
+	print("Care of magical creatures has a homogeneous score distribution between all four houses") 
+	
 
 
 if __name__ == "__main__":
